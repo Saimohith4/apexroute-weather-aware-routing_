@@ -185,12 +185,12 @@ REST_FRAMEWORK = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-    "https://apexroute-weather-aware-routing.vercel.app",
+    "https://apexroute-weather-routing.vercel.app",
 ]
 
 # Allow the Vercel preview deployments for this project.
 CORS_ALLOWED_ORIGIN_REGEXES = [
-    r"^https://apexroute-weather-aware-routing-[a-z0-9-]+-sai-mohiths-projects\.vercel\.app$",
+    r"^https://apexroute-weather-routing-[a-z0-9-]+-sai-mohiths-projects\.vercel\.app$",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -199,7 +199,7 @@ CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
     "https://apexroute-weather-aware-routing.vercel.app",
-    "https://*.vercel.app",
+    "https://apexroute-weather-routing.vercel.app",
 ]
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_SAMESITE = "None"
