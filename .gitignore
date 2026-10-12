@@ -1,0 +1,26 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Environment secrets
+.env
+**/.env
+
+# Django
+*.sqlite3
+staticfiles/
+
+# Node / React
+node_modules/
+frontend/node_modules/
+frontend/dist/
+
+# Local tooling
+.vscode/
+.idea/
+
+# Local API debug output
+forecast-debug.json
