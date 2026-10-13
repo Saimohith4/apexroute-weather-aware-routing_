@@ -581,23 +581,64 @@ function App() {
     }
   }
 
-  async function logoutUser() {
-    try {
-      const csrfToken = await fetchCsrfToken();
-      const response = await fetch(`${AUTH_API}logout/`, {
-        method: "POST",
-        credentials: "include",
-        headers: { "X-CSRFToken": csrfToken },
-      });
-      if (!response.ok) throw new Error(await readApiError(response, "Could not log out."));
-      setAuthUser(null);
-      setAuthMode("login");
-      setAuthPassword("");
-      setAuthError("");
-    } catch (error) {
-      setAuthError(error instanceof Error ? error.message : "Could not log out.");
+  
+async function logoutUser() {
+  try {
+    const csrfToken = await fetchCsrfToken();
+    const response = await fetch(`${AUTH_API}logout/`, {
+      method: "POST",
+      credentials: "include",
+      headers: { "X-CSRFToken": csrfToken },
+    });
+
+    if (!response.ok) {
+      throw new Error(await readApiError(response, "Could not log out."));
     }
+
+   
+    setAuthUser(null);
+    setAuthMode("login");
+    setAuthEmail("");
+    setAuthPassword("");
+    setAuthConfirmPassword("");
+    setAuthName("");
+    setAuthError("");
+    setProfileMenuOpen(false);
+
+    
+    setResult(null);
+    setBaselineResult(null);
+    setBaselineInputs(null);
+    setSimulationResult(null);
+    setSimulationError("");
+
+    
+    setSelectedRouteId(null);
+    setForecastHour(0);
+    setActivePage("dispatch");
+
+    
+    setOrigin("Austin, Texas, USA");
+    setDestination("Mueller Lake Park, Austin, Texas, USA");
+    setDeparture(getDefaultDeparture());
+    setLoad("25000");
+    setInterval("10");
+
+    
+    setSimulationDeparture(getDefaultDeparture());
+    setSimulationLoad("25000");
+    setSimulationInterval("10");
+
+    setError("");
+    setLoading(false);
+    setSimulationLoading(false);
+  } catch (error) {
+    setAuthError(
+      error instanceof Error ? error.message : "Could not log out."
+    );
   }
+}
+
 
   const baselineRecommendedRoute = baselineResult?.routes.find(route => route.route_id === baselineResult.recommended_route_id) ?? baselineResult?.routes[0] ?? null;
   const simulatedRecommendedRoute = simulationResult?.routes.find(route => route.route_id === simulationResult.recommended_route_id) ?? simulationResult?.routes[0] ?? null;
